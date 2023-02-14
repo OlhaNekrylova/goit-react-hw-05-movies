@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/goit-react-hw-05-movies" >
       <Navbar />
       <UserRoutes />
     </BrowserRouter>
