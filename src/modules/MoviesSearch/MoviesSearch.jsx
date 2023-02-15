@@ -1,15 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
-import {useSearchParams} from "react-router-dom";
+import { useState, useEffect, useCallback } from 'react';
+import {useSearchParams} from 'react-router-dom';
+import { searchMovies } from "../../shared/services/movies-api";
+import MoviesSearchList from "../../shared/components/MoviesSearchList";
+import MoviesSearchForm from "../MoviesSearchForm";
+import styles from './MoviesSearch.module.css';
 
-import PostList from "../../shared/components/PostList/PostList"
-
-import PostsSearchForm from "./PostsSearchForm/PostsSearchForm";
-
-import { searchPosts } from "../../shared/services/posts-api";
-
-import styles from "./posts-search.module.scss";
-
-const PostsSearch = () => {
+const MoviesSearch = () => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -23,10 +19,10 @@ const PostsSearch = () => {
             return;
         }
 
-        const fetchPosts = async () => {
+        const fetchMovies = async () => {
             try {
                 setLoading(true);
-                const data = await searchPosts(search, page);
+                const data = await searchMovies(search, page);
                 setItems(prevItems => ([...prevItems, ...data]));
             }
             catch (error) {
@@ -36,11 +32,11 @@ const PostsSearch = () => {
                 setLoading(false);
             }
         }
-        fetchPosts();
+        fetchMovies();
 
-    }, [search, page, setLoading, setItems, setError, setLoading, searchPosts])
+    }, [search, page, setLoading, setItems, setError, setLoading, searchMovies])
 
-    const onSearchPosts = useCallback(({ search }) => {
+    const onSearchMovies = useCallback(({ search }) => {
         setSearchParams({search, page: 1});
         setItems([]);
     }, []);
@@ -52,8 +48,8 @@ const PostsSearch = () => {
 
     return (
         <>
-            <PostsSearchForm initialState={{search}} onSubmit={onSearchPosts} />
-            <PostList items={items} />
+            <MoviesSearchForm initialState={{search}} onSubmit={onSearchMovies} />
+            <MoviesSearchList items={items} />
             {error && <p className={styles.errorMessage}>{error}</p>}
             {loading && <p>...Load posts</p>}
             {Boolean(items.length) && <button onClick={loadMore}>Load more</button>}
@@ -61,4 +57,4 @@ const PostsSearch = () => {
     )
 }
 
-export default PostsSearch;
+export default MoviesSearch;

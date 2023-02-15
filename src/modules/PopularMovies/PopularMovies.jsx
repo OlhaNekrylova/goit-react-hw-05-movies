@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-
-import PopularMoviesList from "../../shared/components/PopularMoviesList/PopularMoviesList";
-
 import { getAllPopularMovies } from "../../shared/services/posts-api";
+import PopularMoviesList from "../../shared/components/PopularMoviesList/PopularMoviesList";
+// import styles from '../PopularMovies/PopularMovies.module.css';
 
 const PopularMovies = () => {
     const [items, setItems] = useState([]);
@@ -10,7 +9,7 @@ const PopularMovies = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchMovies = async () => {
             try {
                 setLoading(true);
                 const data = await getAllPopularMovies();
@@ -23,7 +22,7 @@ const PopularMovies = () => {
                 setLoading(false);
             }
         }
-        fetchPosts();
+        fetchMovies();
 
     }, [setLoading, setItems, setError, setLoading, getAllPopularMovies]);
 
