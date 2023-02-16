@@ -1,7 +1,7 @@
-import { memo } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { memo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-import styles from "./PopularMoviesList.module.css";
+import styles from './PopularMoviesList.module.css';
 
 const PopularMoviesList = ({ items }) => {
 

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { getAllPopularMovies } from "../../shared/services/posts-api";
-import PopularMoviesList from "../../shared/components/PopularMoviesList/PopularMoviesList";
+import { useState, useEffect } from 'react';
+import { getAllPopularMovies } from '../../shared/services/posts-api';
+import PopularMoviesList from '../../shared/components/PopularMoviesList/PopularMoviesList';
 // import styles from '../PopularMovies/PopularMovies.module.css';
 
 const PopularMovies = () => {
@@ -24,7 +24,7 @@ const PopularMovies = () => {
         }
         fetchMovies();
 
-    }, [setLoading, setItems, setError, setLoading, getAllPopularMovies]);
+    }, [setItems, setError, setLoading, getAllPopularMovies]);
 
     return <PopularMoviesList items={items} />
 }

@@ -1,4 +1,4 @@
-import PopularMovies from "../../modules/PopularMovies/PopularMovies";
+import PopularMovies from '../../modules/PopularMovies/PopularMovies';
 
 const HomePage = ()=> {
     return (

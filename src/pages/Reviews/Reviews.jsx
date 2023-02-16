@@ -1,9 +1,9 @@
-import {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
-import { getReviewsByMovieId } from "../../shared/services/movies-api";
+import { getReviewsByMovieId } from '../../shared/services/movies-api';
 
-import styles from "./Reviews.module.css";
+import styles from './Reviews.module.css';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);

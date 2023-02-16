@@ -1,9 +1,9 @@
-import { memo } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { memo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-import styles from "./post-list.module.scss";
+import styles from '../MoviesSearchList/MoviesSearchList.module.css';
 
-const PostList = ({ items }) => {
+const MoviesSearchList = ({ items }) => {
 
     const location = useLocation();
 
@@ -20,8 +20,8 @@ const PostList = ({ items }) => {
     )
 }
 
-export default memo(PostList);
+export default memo(MoviesSearchList);
 
-PostList.defaultProps = {
+MoviesSearchList.defaultProps = {
     items: []
 }

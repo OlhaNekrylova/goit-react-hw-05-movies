@@ -1,9 +1,9 @@
-import {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
-import { getCastByMovieId } from "../../shared/services/movies-api";
+import { getCastByMovieId } from '../../shared/services/movies-api';
 
-import styles from "./Cast.module.css";
+import styles from './Cast.module.css';
 
 const Cast = () => {
     const [cast, setCast] = useState([]);

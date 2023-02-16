@@ -1,11 +1,11 @@
-import { memo } from "react";
-import PropTypes from "prop-types";
+import { memo } from 'react';
+import PropTypes from 'prop-types';
 
-import useForm from "../../../shared/hooks/useForm";
+import useForm from '../../../shared/hooks/useForm';
 
-import styles from "./posts-search-form.module.scss";
+import styles from './posts-search-form.module.scss';
 
-const PostsSearchForm = ({initialState, onSubmit}) => {
+const MoviesSearchForm = ({initialState, onSubmit}) => {
     const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
 
     const {search} = state;
@@ -13,21 +13,21 @@ const PostsSearchForm = ({initialState, onSubmit}) => {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="">Search posts</label>
+                <label htmlFor="">Search movies</label>
                 <input value={search} onChange={handleChange} name="search" placeholder="Search posts" required />
             </div>
         </form>
     )
 }
 
-export default memo(PostsSearchForm);
+export default memo(MoviesSearchForm);
 
-PostsSearchForm.defaultProps = {
+MoviesSearchForm.defaultProps = {
     initialState: {
         search: ""
     }
 }
 
-PostsSearchForm.propTypes = {
+MoviesSearchForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 }

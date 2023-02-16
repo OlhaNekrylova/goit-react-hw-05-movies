@@ -1,7 +1,7 @@
-import {useState, useEffect, useCallback} from "react";
-import { Link, Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
+import {useState, useEffect, useCallback} from 'react';
+import { Link, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 
-import { getMovieById } from "../../shared/services/movies-api";
+import { getMovieById } from '../../shared/services/movies-api';
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState();
