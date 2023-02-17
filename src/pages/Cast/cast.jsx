@@ -6,7 +6,7 @@ import imageUrl from '../../shared/services/movies-api';
 import styles from './Cast.module.css';
 
 const Cast = () => {
-    const [cast, setCast] = useState(null);
+    const [cast, setCast] = useState([]);
     const {movieId} = useParams();
 
     useEffect(()=> {

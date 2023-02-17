@@ -7,12 +7,12 @@ import styles from './Reviews.module.css';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
-    const {id} = useParams();
+    const {movieId} = useParams();
 
     useEffect(()=> {
         const fetchReviews = async() => {
             try {
-                const data = await getReviewsByMovieId(id);
+                const data = await getReviewsByMovieId(movieId);
                 setReviews(data);
             }
             catch({response}) {
@@ -21,7 +21,7 @@ const Reviews = () => {
         }
 
         fetchReviews();
-    }, [id, setReviews]);
+    }, [movieId, setReviews]);
 
 
     const elements = reviews.map(({id, name, text}) => <li className={styles.reviews} key={id}>
@@ -30,9 +30,16 @@ const Reviews = () => {
     </li>)
 
     return (
-        <ol>
-            {elements}
-        </ol>
+        <>
+            {reviews && reviews.length > 0 ? (
+                <ul>
+                    {elements}
+                </ul>
+            ) : (
+                <span>We don't have reviews for this movie.</span>
+            )}
+        </>
+        
     )
 }
 
