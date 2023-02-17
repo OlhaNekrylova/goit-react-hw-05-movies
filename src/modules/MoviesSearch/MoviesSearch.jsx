@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import {useSearchParams} from 'react-router-dom';
 import { searchMovies } from '../../shared/services/movies-api';
-import MoviesSearchList from '../../shared/components/MoviesSearchList';
-import MoviesSearchForm from '../MoviesSearchForm';
+import MoviesSearchList from '../../shared/components/MoviesSearchList/MoviesSearchList';
+import MoviesSearchForm from '../MoviesSearchForm/MoviesSearchForm';
 import styles from './MoviesSearch.module.css';
 
 const MoviesSearch = () => {

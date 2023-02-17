@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
-import styles from './navbar.module.css';
+import styles from '../Navbar/Navbar.module.css';
 
-import items from './items';
+import items from '../Navbar/items';
 
 // const getFullName = ({isActive}) => {
 //     return isActive ? `${styles.link} ${styles.active}` : styles.link;

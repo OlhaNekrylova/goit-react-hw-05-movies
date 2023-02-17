@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import styles from '../MoviesSearchList/MoviesSearchList.module.css';
+import styles from './MoviesSearchList.module.css';
 
 const MoviesSearchList = ({ items }) => {
 

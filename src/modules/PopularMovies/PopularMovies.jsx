@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllPopularMovies } from '../../shared/services/posts-api';
+import { getAllPopularMovies } from '../../shared/services/movies-api';
 import PopularMoviesList from '../../shared/components/PopularMoviesList/PopularMoviesList';
 // import styles from '../PopularMovies/PopularMovies.module.css';
 

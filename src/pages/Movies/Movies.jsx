@@ -1,4 +1,4 @@
-import MovieSearch from '../../modules/MoviesSearch';
+import MovieSearch from '../../modules/MoviesSearch/MoviesSearch';
 
 const MovieSearchPage = ()=> {
     return <MovieSearch />

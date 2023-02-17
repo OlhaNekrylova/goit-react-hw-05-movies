@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "nanoid": "^4.0.1",
     "prop-types": "^15.8.1"
   }
 }
