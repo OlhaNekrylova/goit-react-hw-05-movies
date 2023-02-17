@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import {useSearchParams} from 'react-router-dom';
-import { searchMovies } from '../../shared/services/movies-api';
+import { getSearchMovies } from '../../shared/services/movies-api';
 import MoviesSearchList from '../../shared/components/MoviesSearchList/MoviesSearchList';
 import MoviesSearchForm from '../MoviesSearchForm/MoviesSearchForm';
 import styles from './MoviesSearch.module.css';
@@ -22,7 +22,7 @@ const MoviesSearch = () => {
         const fetchMovies = async () => {
             try {
                 setLoading(true);
-                const data = await searchMovies(search, page);
+                const data = await getSearchMovies(search, page);
                 setItems(prevItems => ([...prevItems, ...data]));
             }
             catch (error) {
@@ -34,7 +34,7 @@ const MoviesSearch = () => {
         }
         fetchMovies();
 
-    }, [search, page, setLoading, setItems, setError, setLoading, searchMovies])
+    }, [search, page, setLoading, setItems, setError, setLoading, getSearchMovies])
 
     const onSearchMovies = useCallback(({ search }) => {
         setSearchParams({search, page: 1});

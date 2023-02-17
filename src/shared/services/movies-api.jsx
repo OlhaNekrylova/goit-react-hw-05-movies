@@ -1,37 +1,41 @@
 import axios from 'axios';
 
-const instance = axios.create(
-    const BASE_URL = "https://api.themoviedb.org/3";
-    const params = {
+const instance = axios.create({
+    BASE_URL: 'https://api.themoviedb.org/3',
+    params: {
         API_KEY: "682f4219ed4d8b2eaabdbacd40ee2053",
-        search: searchWord,
-        id: 'id',
-    }
-)
+        language: 'en-US',
+    },
+});
 
-export const getAllPopularMovies = async()=> {
-    const {data} = await instance.get(BASE_URL, `/trending/all/day?api_key=<${API_KEY}`, 
-    { params });
+export const imageUrl = 'https://image.tmdb.org/t/p/';
+
+export const getAllPopularMovies = async(page)=> {
+    const query = `/trending/movie/week?page=${page}`;
+    const {data} = await instance.get(query);
     return data;
 }
 
-export const searchMovies = async()=> {
-    const {data} = await instance.get(`/${searchWord}/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`
-    );
+export const getSearchMovies = async(search)=> {
+    const query = `/${search}/movie?page=1&include_adult=false`;
+    const {data} = await instance.get(query);
     return data;
 }
 
-export const getMovieById = async()=> {
-    const {data} = await instance.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
+export const getMovieById = async(movieId)=> {
+    const query = `/movie/${movieId}`;
+    const {data} = await instance.get(query);
     return data;
 }
 
-export const getCastByMovieId  = async()=> {
-    const {data} = await instance.get(`/movie/${id}/credits?api_key=${API_KEY}&language=en-US`);
+export const getCastByMovieId  = async(movieId)=> {
+    const query = `/movie/${movieId}/credits`;
+    const {data} = await instance.get(query);
     return data;
 }
 
-export const getReviewsByMovieId  = async()=> {
-    const {data} = await instance.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`);
+export const getReviewsByMovieId  = async(movieId)=> {
+    const query = `/movie/${movieId}/reviews?page=1`;
+    const {data} = await instance.get(query);
     return data;
 }
