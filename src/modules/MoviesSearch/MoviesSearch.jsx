@@ -34,12 +34,12 @@ const MoviesSearch = () => {
         }
         fetchMovies();
 
-    }, [search, page, setLoading, setItems, setError, setLoading, getSearchMovies])
+    }, [search, page, setLoading, setItems, setError])
 
     const onSearchMovies = useCallback(({ search }) => {
         setSearchParams({search, page: 1});
         setItems([]);
-    }, []);
+    }, [setSearchParams]);
 
 
     const loadMore = useCallback(() => {
@@ -51,7 +51,7 @@ const MoviesSearch = () => {
             <MoviesSearchForm initialState={{search}} onSubmit={onSearchMovies} />
             <MoviesSearchList items={items} />
             {error && <p className={styles.errorMessage}>{error}</p>}
-            {loading && <p>...Load posts</p>}
+            {loading && <p>...Load movies</p>}
             {Boolean(items.length) && <button onClick={loadMore}>Load more</button>}
         </>
     )

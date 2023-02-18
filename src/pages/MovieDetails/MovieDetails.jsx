@@ -21,9 +21,9 @@ const MovieDetails = () => {
     const from = location.state?.from || "/"; 
 
     useEffect(()=> {
-        setLoading(true);
         const fetchMovie = async() => {
             try {
+                setLoading(true);
                 const result = await getMovieById(movieId);
                 setMovie(result);
             }
