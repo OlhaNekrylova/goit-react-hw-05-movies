@@ -1,16 +1,14 @@
 import MovieSearch from '../../modules/MoviesSearch/MoviesSearch';
 
 const MovieSearchPage = ()=> {
-    return <MovieSearch />
+    return (
+        <div className="container">
+            <MovieSearch />
+        </div>
+    ) 
 }
 
 export default MovieSearchPage;
-
-
-
-
-
-
 
 
 

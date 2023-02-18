@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback} from 'react';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import { getMovieById } from '../../shared/services/movies-api';
-import imageUrl from '../../shared/services/movies-api';
+import {imageUrl} from '../../shared/services/movies-api';
 import styles from '../MovieDetails/MovieDetails.module.css';
 
 const getClassName = ({ isActive }) => {
