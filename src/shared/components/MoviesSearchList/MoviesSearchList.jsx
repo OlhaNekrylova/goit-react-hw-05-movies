@@ -1,17 +1,29 @@
 import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
+import defaultMovieImg from '../../../images/placeholder.jpg';
 import styles from './MoviesSearchList.module.css';
 
 const MoviesSearchList = ({ items }) => {
 
     const location = useLocation();
 
-    const elements = items.map(({ id, title, body }) =>
-        <Link className={styles.link} key={id} to={`/posts/${id}`} state={{from: location}}><li className={styles.item}>
-            <h4>{title}</h4>
-            <p>{body}</p>
-        </li></Link>);
+    const elements = items.map(({ movieId, title, poster_path }) =>
+        <Link className={styles.link} 
+            key={movieId} to={`/movies/${movieId}`} 
+            state={{from: location}}>
+            <li className={styles.item}>
+                <img
+                    src={
+                    poster_path
+                    ? `https://image.tmdb.org/t/p/original/${poster_path}`
+                    : defaultMovieImg
+                    }
+                    alt={title}
+                    className={styles.movieImg}
+                    />
+                <p className={styles.movieTitle}>{title}</p>
+            </li>
+        </Link>);
 
     return (
         <ul className={styles.list}>

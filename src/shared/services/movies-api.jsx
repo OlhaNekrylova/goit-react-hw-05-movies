@@ -8,16 +8,14 @@ const instance = axios.create({
     },
 });
 
-export const imageUrl = 'https://image.tmdb.org/t/p/';
-
-export const getAllPopularMovies = async(page)=> {
-    const query = `/trending/movie/week?page=${page}`;
+export const getAllPopularMovies = async()=> {
+    const query = `/trending/movie/week?page=1`;
     const {data} = await instance.get(query);
     return data;
 }
 
-export const getSearchMovies = async(search)=> {
-    const query = `/${search}/movie?page=1&include_adult=false`;
+export const getSearchMovies = async(search,page )=> {
+    const query = `/${search}/movie?page=${page}&include_adult=false`;
     const {data} = await instance.get(query);
     return data;
 }

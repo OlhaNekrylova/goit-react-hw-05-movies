@@ -1,11 +1,10 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-
 import useForm from '../../shared/hooks/useForm';
-
+import initialState from '../../modules/initialState';
 import styles from './MoviesSearchForm.module.css';
 
-const MoviesSearchForm = ({initialState, onSubmit}) => {
+const MoviesSearchForm = ({ onSubmit }) => {
     const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
     const {search} = state;
 

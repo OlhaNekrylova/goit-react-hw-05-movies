@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback} from 'react';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import { getMovieById } from '../../shared/services/movies-api';
-import {imageUrl} from '../../shared/services/movies-api';
+import defaultMovieImg from '../../images/placeholder.jpg';
 import styles from '../MovieDetails/MovieDetails.module.css';
 
 const getClassName = ({ isActive }) => {
@@ -11,21 +11,21 @@ const getClassName = ({ isActive }) => {
 };
 
 const MovieDetails = () => {
-    const [movie, setMovie] = useState();
+    const [item, setItem] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const {movieId} = useParams();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from || "/"; 
+    const from = location.state?.from || '/movies'; 
 
     useEffect(()=> {
         const fetchMovie = async() => {
             try {
                 setLoading(true);
-                const result = await getMovieById(movieId);
-                setMovie(result);
+                const response = await getMovieById(movieId);
+                setItem({ ...response });
             }
             catch(error) {
                 setError(error.message);
@@ -39,18 +39,19 @@ const MovieDetails = () => {
     const goBack = useCallback(()=> navigate(from), [from, navigate]);
 
     const {
+        poster_path,
         original_title,
         release_date,
         vote_average,
         overview,
         genres,
         homepage,
-    } = movie;
+    } = item;
     
     let genresList = '';
     let date = '';
     
-    if (Object.keys(movie).length) {
+    if (Object.keys(item).length) {
         genresList = genres.map(({ name }, idx) => {
         if (idx === genres.length - 1) {
             return `${name}.`;
@@ -73,11 +74,15 @@ const MovieDetails = () => {
                 Go back
             </button>
             <div className={styles.movie__wrap}>
-                <img
-                    src={imageUrl}
-                    alt=""
-                    width="250"
-                />
+            <img
+                src={
+                poster_path
+                ? `https://image.tmdb.org/t/p/original/${poster_path}`
+                : defaultMovieImg
+                }
+                alt=""
+                width="250"
+            />
                 <div className={styles.info__wrap}>
                     <h2 className={styles.movie__title}>
                     <a href={homepage} target="_black">
