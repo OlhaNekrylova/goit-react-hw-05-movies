@@ -1,38 +1,60 @@
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-
+import { TailSpin } from 'react-loader-spinner';
 import { getCastByMovieId } from '../../shared/services/movies-api';
-import imageUrl from '../../shared/services/movies-api';
+import defaultMovieImg from '../../images/placeholder.jpg';
 import styles from './Cast.module.css';
 
 const Cast = () => {
     const [cast, setCast] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const {movieId} = useParams();
 
     useEffect(()=> {
         const fetchCast = async() => {
+            setLoading(true);
             try {
                 const data = await getCastByMovieId(movieId);
                 setCast(data);
             }
-            catch({response}) {
-                console.log(response.data.message);
+            catch(error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
             }
         }
 
         fetchCast();
-    }, [movieId, setCast]);
+    }, [movieId]);
 
 
-    const elements = cast.map(({id, profile_path, name, character }) => 
-    <li className={styles.cast} key={id}>
-        <img src={`${imageUrl}${profile_path}`} alt="" />
-                <h3>{name}</h3>
-                <span>Charachter: {character}</span>
-    </li>)
+    const elements = cast.map(({movieId, profile_path, name, character }) => {
+    const avatar = `https://image.tmdb.org/t/p/original/${profile_path}`;
+    return (
+        <li className={styles.cast} key={movieId}>
+        <img
+            src={profile_path ? avatar : defaultMovieImg}
+            alt={name}
+            width="150"
+            height="225"
+        />
+        <p className={styles.actor__name}>{name}</p>
+        <p className={styles.actor__character}>
+            as <b>{character}</b>
+        </p>
+    </li>
+    );
+});    
 
     return (
         <>
+            {loading && (
+                <div className="loading__container__reviews_cast">
+                    <TailSpin color="#2196f3" />
+                </div>
+            )}
+            {error && <p>Oops. Something goes wrong. Please try again.</p>}
             {cast && (
                 <ul>
                     {elements}
@@ -40,6 +62,6 @@ const Cast = () => {
             )}
         </>
     );
-}
+};
 
 export default Cast;
