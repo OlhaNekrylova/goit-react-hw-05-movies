@@ -1,36 +1,48 @@
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-
+import { RevolvingDot } from 'react-loader-spinner';
 import { getReviewsByMovieId } from '../../shared/services/movies-api';
 
 import styles from './Reviews.module.css';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const {movieId} = useParams();
 
     useEffect(()=> {
         const fetchReviews = async() => {
+            setLoading(true);
             try {
                 const data = await getReviewsByMovieId(movieId);
                 setReviews(data);
             }
-            catch({response}) {
-                console.log(response.data.message);
+            catch(error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
             }
-        }
+        };
 
         fetchReviews();
-    }, [movieId, setReviews]);
+    }, [movieId]);
 
 
-    const elements = reviews.map(({id, name, text}) => <li className={styles.reviews} key={id}>
-        <p>Name: {name}.</p>
-        <p>{text}</p>
-    </li>)
+    const elements = reviews.map(({movieId, author, content}) => (
+        <li className={styles.reviews} key={movieId}>
+            <p className={styles.author}>
+            Author: <b>{author}</b>
+            </p>
+            <p className={styles.content}>{content}</p>
+        </li>));
 
     return (
         <>
+            {loading && (
+                <RevolvingDot />
+            )}
+            {error && <p>Oops. Something goes wrong. Please try again.</p>}
             {reviews && reviews.length > 0 ? (
                 <ul>
                     {elements}
@@ -40,7 +52,7 @@ const Reviews = () => {
             )}
         </>
         
-    )
-}
+    );
+};
 
 export default Reviews;

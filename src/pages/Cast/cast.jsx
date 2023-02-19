@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { TailSpin } from 'react-loader-spinner';
+import { RevolvingDot } from 'react-loader-spinner';
 import { getCastByMovieId } from '../../shared/services/movies-api';
 import defaultMovieImg from '../../images/placeholder.jpg';
 import styles from './Cast.module.css';
@@ -50,11 +50,9 @@ const Cast = () => {
     return (
         <>
             {loading && (
-                <div className="loading__container__reviews_cast">
-                    <TailSpin color="#2196f3" />
-                </div>
+                <RevolvingDot />
             )}
-            {error && <p>Oops. Something goes wrong. Please try again.</p>}
+            {error && <p>Something goes wrong. Please try again.</p>}
             {cast && (
                 <ul>
                     {elements}

@@ -1,6 +1,6 @@
 import {useState, useEffect, useCallback} from 'react';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
-import { TailSpin } from 'react-loader-spinner';
+import { RevolvingDot } from 'react-loader-spinner';
 import { getMovieById } from '../../shared/services/movies-api';
 import defaultMovieImg from '../../images/placeholder.jpg';
 import styles from '../MovieDetails/MovieDetails.module.css';
@@ -65,9 +65,7 @@ const MovieDetails = () => {
     return (
         <div className="container">
             {loading && (
-                <div className="loading__container">
-                    <TailSpin color="#2196f3" />
-                </div>
+                <RevolvingDot />
             )}
             {error && <p>Something goes wrong. Please try again.</p>}
             <button type="button" onClick={goBack} className="btn">
