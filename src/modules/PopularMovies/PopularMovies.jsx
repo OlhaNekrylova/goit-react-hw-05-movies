@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { getAllPopularMovies } from '../../shared/services/movies-api';
+import { RevolvingDot } from 'react-loader-spinner';
+import { getPopularMovies } from '../../shared/services/movies-api';
 import PopularMoviesList from '../../shared/components/PopularMoviesList/PopularMoviesList';
-import styles from '../PopularMovies/PopularMovies.module.css';
+// import styles from '../PopularMovies/PopularMovies.module.css';
 
 const PopularMovies = () => {
     const [items, setItems] = useState([]);
@@ -12,7 +13,7 @@ const PopularMovies = () => {
         const fetchMovies = async () => {
             try {
                 setLoading(true);
-                const data = await getAllPopularMovies();
+                const data = await getPopularMovies();
                 setItems(prevItems => ([...prevItems, ...data]));
             }
             catch (error) {
@@ -24,13 +25,15 @@ const PopularMovies = () => {
         }
         fetchMovies();
 
-    }, [setItems, setError, setLoading]);
+    }, []);
 
     return (
         <>
+            {loading && (
+                <RevolvingDot />
+            )}
+            {error && <p>Something goes wrong. Please try again.</p>}
             <PopularMoviesList items={items} />
-            {error && <p className={styles.errorMessage}>{error}</p>}
-            {loading && <p>...Load movies</p>}
         </>
     )
 }

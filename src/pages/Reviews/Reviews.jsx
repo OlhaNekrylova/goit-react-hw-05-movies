@@ -42,7 +42,7 @@ const Reviews = () => {
             {loading && (
                 <RevolvingDot />
             )}
-            {error && <p>Oops. Something goes wrong. Please try again.</p>}
+            {error && <p>Something goes wrong. Please try again.</p>}
             {reviews && reviews.length > 0 ? (
                 <ul>
                     {elements}

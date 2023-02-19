@@ -8,34 +8,34 @@ const instance = axios.create({
     },
 });
 
-export const getAllPopularMovies = async()=> {
-    const query = `/trending/all/day`;
-    const {data} = await instance.get(query);
+export const getPopularMovies = async()=> {
+    const url = `/trending/all/day`;
+    const {data} = await instance.get(url);
     return data;
 }
 
-export const getSearchMovies = async(search, page )=> {
-    const query = `/search/movie`;
-    const {data} = await instance.get(query, {
-        params: {search, page },
+export const getSearchMovies = async(query, page )=> {
+    const url = `/search/movie`;
+    const {data} = await instance.get(url, {
+        params: {query, page },
     });
     return data;
 }
 
 export const getMovieById = async(movieId)=> {
-    const query = `/movie/${movieId}`;
-    const {data} = await instance.get(query);
+    const url = `/movie/${movieId}`;
+    const {data} = await instance.get(url);
     return data;
 }
 
 export const getCastByMovieId  = async(movieId)=> {
-    const query = `/movie/${movieId}/credits`;
-    const {data} = await instance.get(query);
+    const url = `/movie/${movieId}/credits`;
+    const {data} = await instance.get(url);
     return data;
 }
 
 export const getReviewsByMovieId  = async(movieId)=> {
-    const query = `/movie/${movieId}/reviews`;
-    const {data} = await instance.get(query);
+    const url = `/movie/${movieId}/reviews`;
+    const {data} = await instance.get(url);
     return data;
 }
