@@ -9,13 +9,13 @@ const instance = axios.create({
 });
 
 export const getPopularMovies = async()=> {
-    const url = `/trending/all/day`;
+    const url = '/trending/all/day';
     const {data} = await instance.get(url);
     return data;
 }
 
 export const getSearchMovies = async(query, page )=> {
-    const url = `/search/movie`;
+    const url = '/search/movie';
     const {data} = await instance.get(url, {
         params: {query, page },
     });
