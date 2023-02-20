@@ -13,8 +13,8 @@ const PopularMovies = () => {
         const fetchMovies = async () => {
             try {
                 setLoading(true);
-                const data = await getPopularMovies();
-                setItems(prevItems => ([...prevItems, ...data]));
+                const {results} = await getPopularMovies();
+                setItems(prevItems => ([...prevItems, ...results]));
             }
             catch (error) {
                 setError(error.message);

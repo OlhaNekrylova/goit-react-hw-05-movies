@@ -22,8 +22,8 @@ const MoviesSearch = () => {
         const fetchMovies = async () => {
             try {
                 setLoading(true);
-                const data = await getSearchMovies(search, page);
-                setItems(prevItems => ([...prevItems, ...data]));
+                const {results} = await getSearchMovies(search, page);
+                setItems(prevItems => ([...prevItems, ...results]));
             }
             catch (error) {
                 setError(error.message);
