@@ -14,6 +14,7 @@ const PopularMovies = () => {
             try {
                 setLoading(true);
                 const {results} = await getPopularMovies();
+                // console.log(results);
                 setItems(prevItems => ([...prevItems, ...results]));
             }
             catch (error) {
