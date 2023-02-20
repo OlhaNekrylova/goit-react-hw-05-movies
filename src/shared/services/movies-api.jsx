@@ -9,8 +9,9 @@ const instance = axios.create({
 });
 
 export const getPopularMovies = async()=> {
-    const url = '/trending/movie/day';
-    const {data} = await instance.get(url);
+    // const url = '/trending/movie/day';
+    const {data} = await instance.get('/trending/all/day');
+    console.log(data);
     return data;
 }
 
