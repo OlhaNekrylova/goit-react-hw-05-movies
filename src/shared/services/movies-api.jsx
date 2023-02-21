@@ -22,20 +22,20 @@ export const getSearchMovies = async(query, page )=> {
     return data;
 }
 
-export const getMovieById = async(movieId)=> {
-    const url = `/movie/${movieId}`;
+export const getMovieById = async(movie_id)=> {
+    const url = `/movie/${movie_id}`;
     const {data} = await instance.get(url);
     return data;
 }
 
-export const getCastByMovieId  = async(movieId)=> {
-    const url = `/movie/${movieId}/credits`;
+export const getCastByMovieId  = async(movie_id)=> {
+    const url = `/movie/${movie_id}/credits`;
     const {data} = await instance.get(url);
     return data;
 }
 
-export const getReviewsByMovieId  = async(movieId)=> {
-    const url = `/movie/${movieId}/reviews`;
+export const getReviewsByMovieId  = async(movie_id)=> {
+    const url = `/movie/${movie_id}/reviews`;
     const {data} = await instance.get(url);
     return data;
 }

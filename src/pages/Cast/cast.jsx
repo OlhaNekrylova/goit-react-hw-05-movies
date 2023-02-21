@@ -9,13 +9,13 @@ const Cast = () => {
     const [cast, setCast] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const {movieId} = useParams();
+    const {id} = useParams();
 
     useEffect(()=> {
         const fetchCast = async() => {
             setLoading(true);
             try {
-                const response = await getCastByMovieId(movieId);
+                const response = await getCastByMovieId(id);
                 setCast([...response.cast]);
             }
             catch(error) {
@@ -26,13 +26,13 @@ const Cast = () => {
         }
 
         fetchCast();
-    }, [movieId]);
+    }, [id]);
 
 
-    const elements = cast.map(({movieId, profile_path, name, character }) => {
+    const elements = cast.map(({id, profile_path, name, character }) => {
     const avatar = `https://image.tmdb.org/t/p/original/${profile_path}`;
     return (
-        <li className={styles.cast} key={movieId}>
+        <li className={styles.cast} key={id}>
         <img
             src={profile_path ? avatar : defaultMovieImg}
             alt={name}

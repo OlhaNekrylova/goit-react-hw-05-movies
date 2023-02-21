@@ -9,13 +9,13 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const {movieId} = useParams();
+    const {id} = useParams();
 
     useEffect(()=> {
         const fetchReviews = async() => {
             setLoading(true);
             try {
-                const { results } = await getReviewsByMovieId(movieId);
+                const { results } = await getReviewsByMovieId(id);
                 setReviews([...results]);
             }
             catch(error) {
@@ -26,11 +26,11 @@ const Reviews = () => {
         };
 
         fetchReviews();
-    }, [movieId]);
+    }, [id]);
 
 
-    const elements = reviews.map(({movieId, author, content}) => (
-        <li className={styles.reviews} key={movieId}>
+    const elements = reviews.map(({id, author, content}) => (
+        <li className={styles.reviews} key={id}>
             <p className={styles.author}>
             Author: <b>{author}</b>
             </p>

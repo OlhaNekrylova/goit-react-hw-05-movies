@@ -15,7 +15,7 @@ const MovieDetails = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const {movieId} = useParams();
+    const {id} = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from || '/movies'; 
@@ -24,7 +24,7 @@ const MovieDetails = () => {
         const fetchMovie = async() => {
             try {
                 setLoading(true);
-                const response = await getMovieById(movieId);
+                const response = await getMovieById(id);
                 setItem({ ...response });
             }
             catch(error) {
@@ -34,7 +34,7 @@ const MovieDetails = () => {
             }
         }
         fetchMovie();
-    }, [movieId])
+    }, [id])
 
     const goBack = useCallback(()=> navigate(from), [from, navigate]);
 
@@ -98,7 +98,7 @@ const MovieDetails = () => {
                 <li className={styles.extraPages__item}>
                     <NavLink
                         state={{ from }}
-                        to={`/movies/${movieId}/credits`}
+                        to={`/movies/${id}/credits`}
                         className={getClassName}
                     >
                     Cast
@@ -107,7 +107,7 @@ const MovieDetails = () => {
                 <li className={styles.extraPages__item}>
                     <NavLink
                         state={{ from }}
-                        to={`/movies/${movieId}/reviews`}
+                        to={`/movies/${id}/reviews`}
                         className={getClassName}
                     >
                     Reviews

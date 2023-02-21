@@ -7,11 +7,11 @@ const MoviesSearchList = ({ items }) => {
 
     const location = useLocation();
 
-    const elements = items.map(({ movieId, title, poster_path }, idx) =>
-    <li className={styles.item} key={idx}>
+    const elements = items.map(({ id, title, poster_path }) =>
+    <li className={styles.item} key={id}>
     <Link className={styles.movieLink} 
         state={{from: location}}
-        to={`/movies/${movieId}`}>
+        to={`/movies/${id}`}>
                 <img
                     src={
                     poster_path
@@ -24,7 +24,7 @@ const MoviesSearchList = ({ items }) => {
                 <p className={styles.movieTitle}>{title}</p>
                 </Link>
         </li> );
-
+    console.log(items);
     return (
         <ul className={styles.list}>
             {elements}
