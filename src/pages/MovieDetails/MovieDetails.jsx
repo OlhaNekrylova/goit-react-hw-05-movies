@@ -25,7 +25,7 @@ const MovieDetails = () => {
             try {
                 setLoading(true);
                 const response = await getMovieById(movieId);
-                setItem({ ...response });
+                setItem([...response ]);
             }
             catch(error) {
                 setError(error.message);

@@ -44,7 +44,7 @@ const Reviews = () => {
             )}
             {error && <p>Something goes wrong. Please try again.</p>}
             {reviews && reviews.length > 0 ? (
-                <ul className={styles.review__list}>
+                <ul className={styles.content}>
                     {elements}
                 </ul>
             ) : (
