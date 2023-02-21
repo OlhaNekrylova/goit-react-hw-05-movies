@@ -15,8 +15,8 @@ const Cast = () => {
         const fetchCast = async() => {
             setLoading(true);
             try {
-                const data = await getCastByMovieId(movieId);
-                setCast(data);
+                const response = await getCastByMovieId(movieId);
+                setCast([...response.cast]);
             }
             catch(error) {
                 setError(error.message);
@@ -54,7 +54,7 @@ const Cast = () => {
             )}
             {error && <p>Something goes wrong. Please try again.</p>}
             {cast && (
-                <ul>
+                <ul className={styles.cast__list}>
                     {elements}
                 </ul>
             )}

@@ -15,8 +15,8 @@ const Reviews = () => {
         const fetchReviews = async() => {
             setLoading(true);
             try {
-                const data = await getReviewsByMovieId(movieId);
-                setReviews(data);
+                const { results } = await getReviewsByMovieId(movieId);
+                setReviews([...results]);
             }
             catch(error) {
                 setError(error.message);
@@ -44,7 +44,7 @@ const Reviews = () => {
             )}
             {error && <p>Something goes wrong. Please try again.</p>}
             {reviews && reviews.length > 0 ? (
-                <ul>
+                <ul className={styles.review__list}>
                     {elements}
                 </ul>
             ) : (

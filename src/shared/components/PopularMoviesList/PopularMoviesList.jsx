@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import defaultMovieImg from '../../../images/placeholder.jpg';
 import styles from './PopularMoviesList.module.css';
 
@@ -8,10 +9,10 @@ const PopularMoviesList = ({ items }) => {
     const location = useLocation();
 
     const elements = items.map(({ movieId, title, poster_path }) =>
-        <Link className={styles.link} 
-            key={movieId} to={`/movies/${movieId}`} 
-            state={{from: location}}>
-            <li className={styles.item}>
+        <li className={styles.item} key={movieId}>
+            <Link className={styles.movieLink} 
+                state={{from: location}}
+                to={`/movies/${movieId}`}>
                 <img
                     src={
                     poster_path
@@ -22,8 +23,8 @@ const PopularMoviesList = ({ items }) => {
                     className={styles.movieImg}
                     />
                 <p className={styles.movieTitle}>{title}</p>
-            </li>
-        </Link>);
+            </Link>
+        </li> );
 
     return (
         <ul className={styles.list}>
@@ -34,6 +35,6 @@ const PopularMoviesList = ({ items }) => {
 
 export default memo(PopularMoviesList);
 
-PopularMoviesList.defaultProps = {
-    items: []
-}
+PopularMoviesList.propTypes = {
+    items: PropTypes.array,
+};

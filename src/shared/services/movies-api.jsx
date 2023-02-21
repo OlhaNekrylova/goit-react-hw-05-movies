@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    BASE_URL: 'https://api.themoviedb.org/3',
+    baseURL: 'https://api.themoviedb.org/3',
     params: {
         api_key: '682f4219ed4d8b2eaabdbacd40ee2053',
         language: 'en-US',
@@ -9,9 +9,8 @@ const instance = axios.create({
 });
 
 export const getPopularMovies = async()=> {
-    // const url = '/trending/movie/day';
-    const {data} = await instance.get('/trending/all/day');
-    console.log(data);
+    const url = '/trending/movie/day';
+    const {data} = await instance.get(url);
     return data;
 }
 
