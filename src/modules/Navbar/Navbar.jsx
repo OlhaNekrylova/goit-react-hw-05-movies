@@ -15,7 +15,7 @@ const Navbar = ()=> {
     </li>);
 
     return (
-        <div className="container">
+        <div className={styles.container}>
             <ul className={styles.menu}>
                 {elements}
             </ul>

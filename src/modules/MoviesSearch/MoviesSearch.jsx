@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import {useSearchParams} from 'react-router-dom';
 import { getSearchMovies } from '../../shared/services/movies-api';
-import MoviesSearchList from '../../shared/components/MoviesSearchList/MoviesSearchList';
+import PopularMoviesList from '../../shared/components/PopularMoviesList/PopularMoviesList';
 import MoviesSearchForm from '../MoviesSearchForm/MoviesSearchForm';
 import styles from './MoviesSearch.module.css';
 
@@ -23,7 +23,7 @@ const MoviesSearch = () => {
             try {
                 setLoading(true);
                 const {results} = await getSearchMovies(search, page);
-                setItems(prevItems => ([...prevItems, ...results]));
+                setItems([...results]);
             }
             catch (error) {
                 setError(error.message);
@@ -49,7 +49,7 @@ const MoviesSearch = () => {
     return (
         <>
             <MoviesSearchForm initialState={{search}} onSubmit={onSearchMovies} />
-            <MoviesSearchList items={items} />
+            <PopularMoviesList items={items} />
             {error && <p className={styles.errorMessage}>{error}</p>}
             {loading && <p>...Load movies</p>}
             {Boolean(items.length) && <button onClick={loadMore}>Load more</button>}

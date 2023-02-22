@@ -32,15 +32,15 @@ const Cast = () => {
     const elements = cast.map(({id, profile_path, name, character }) => {
     const avatar = `https://image.tmdb.org/t/p/original/${profile_path}`;
     return (
-        <li className={styles.cast} key={id}>
+        <li className={styles.item} key={id}>
         <img
             src={profile_path ? avatar : defaultMovieImg}
             alt={name}
             width="150"
             height="225"
         />
-        <p className={styles.actor__name}>{name}</p>
-        <p className={styles.actor__character}>
+        <p className={styles.name}>{name}</p>
+        <p className={styles.character}>
             as <b>{character}</b>
         </p>
     </li>
@@ -54,7 +54,7 @@ const Cast = () => {
             )}
             {error && <p>Something goes wrong. Please try again.</p>}
             {cast && (
-                <ul className={styles.cast__list}>
+                <ul className={styles.list}>
                     {elements}
                 </ul>
             )}

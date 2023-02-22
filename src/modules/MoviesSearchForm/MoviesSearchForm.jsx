@@ -11,8 +11,8 @@ const MoviesSearchForm = ({ onSubmit }) => {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="">Search movies</label>
-                <input value={search} onChange={handleChange} name="search" placeholder="Search" required />
+                <label className={styles.label} htmlFor="">Search movies</label>
+                <input className={styles.input} value={search} onChange={handleChange} name="search" placeholder="Search" required />
             </div>
         </form>
     )

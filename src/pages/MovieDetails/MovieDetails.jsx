@@ -68,10 +68,10 @@ const MovieDetails = () => {
                 <RevolvingDot />
             )}
             {error && <p>Something goes wrong. Please try again.</p>}
-            <button type="button" onClick={goBack} className="btn">
+            <button type="button" onClick={goBack} className={styles.btn}>
                 Go back
             </button>
-            <div className={styles.movie__wrap}>
+            <div className={styles.movie}>
             <img
                 src={
                 poster_path
@@ -81,21 +81,21 @@ const MovieDetails = () => {
                 alt=""
                 width="250"
             />
-                <div className={styles.info__wrap}>
-                    <h2 className={styles.movie__title}>
+                <div className={styles.info}>
+                    <h2 className={styles.title}>
                     <a href={homepage} target="_black">
                         {original_title} ({date})
                     </a>
                 </h2>
-                <p className={styles.movie__score}>User score: {vote_average}</p>
-                <h3 className={styles.movie__overviewTitle}>Overview</h3>
-                <p className={styles.movie__overviewText}>{overview}</p>
-                <h3 className={styles.movie__genresTitle}>Genres</h3>
-                <p className={styles.movie__genresList}>{genresList}</p>
+                <p className={styles.score}>User score: {vote_average}</p>
+                <h3 className={styles.overviewTitle}>Overview</h3>
+                <p className={styles.overviewText}>{overview}</p>
+                <h3 className={styles.genresTitle}>Genres</h3>
+                <p className={styles.genresList}>{genresList}</p>
                 </div>
             </div>
-            <ul className={styles.extraPages__list}>
-                <li className={styles.extraPages__item}>
+            <ul className={styles.list}>
+                <li className={styles.item}>
                     <NavLink
                         state={{ from }}
                         to={`/movies/${id}/credits`}
@@ -104,7 +104,7 @@ const MovieDetails = () => {
                     Cast
                     </NavLink>
                 </li>
-                <li className={styles.extraPages__item}>
+                <li className={styles.item}>
                     <NavLink
                         state={{ from }}
                         to={`/movies/${id}/reviews`}
