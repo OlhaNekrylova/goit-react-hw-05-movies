@@ -52,7 +52,12 @@ const MoviesSearch = () => {
             <PopularMoviesList items={items} />
             {error && <p className={styles.errorMessage}>{error}</p>}
             {loading && <p>...Load movies</p>}
-            {Boolean(items.length) && <button onClick={loadMore}>Load more</button>}
+            {Boolean(items.length) && 
+                <button className={styles.loadMoreBtn} 
+                    onClick={loadMore}>
+                    Load more
+                </button>
+            }
         </>
     )
 }
