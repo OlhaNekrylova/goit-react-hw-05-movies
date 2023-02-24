@@ -1,4 +1,4 @@
-import {useState, useEffect, useCallback} from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { RevolvingDot } from 'react-loader-spinner';
 import { getMovieById } from '../../shared/services/movies-api';
@@ -114,8 +114,9 @@ const MovieDetails = () => {
                     </NavLink>
                 </li>
             </ul>
-    
+            <Suspense fallback={<p>...loading</p>}>
             <Outlet />
+            </Suspense>
         </div>
     );
 };

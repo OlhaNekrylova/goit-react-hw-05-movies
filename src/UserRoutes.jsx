@@ -14,8 +14,8 @@ const UserRoutes = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/movies" element={<Movies />} />
                 <Route path="/movies/:id" element={<MovieDetails />}>
-                    <Route path="/movies/:id/credits" element={<Cast />} />
-                    <Route path="/movies/:id/reviews" element={<Reviews />}  />     
+                    <Route path="credits" element={<Cast />} />
+                    <Route path="reviews" element={<Reviews />}  />     
                 </Route>
                 <Route path="*" element={<Home />} />
             </Routes>
